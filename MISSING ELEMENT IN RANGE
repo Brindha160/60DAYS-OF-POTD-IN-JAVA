@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Solution {
+    public ArrayList<Integer> missingRange(int[] arr, int low, int high) {
+        
+        ArrayList<Integer> result = new ArrayList<>();
+        Arrays.sort(arr);
+        
+        int expected = low;
+        
+        for(int num : arr) {
+            if(num < low) continue;
+            if(num > high) break;
+            
+            while(expected < num) {
+                result.add(expected);
+                expected++;
+            }
+            expected = num + 1;
+        }
+        
+        while(expected <= high) {
+            result.add(expected);
+            expected++;
+        }
+        
+        return result;
+    }
+}
